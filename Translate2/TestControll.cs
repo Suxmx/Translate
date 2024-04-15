@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Translate2
 {
-
-    public partial class MainForm : Form
+    public partial class TestControll : UserControl
     {
-        public MainForm()
+        public TestControll()
         {
             InitializeComponent();
-            
-
         }
-
-        
     }
 }

@@ -2,9 +2,10 @@ D:\Code\Translate2\Translate2\bin\Debug\Translate2.exe.config
 D:\Code\Translate2\Translate2\bin\Debug\Translate2.exe
 D:\Code\Translate2\Translate2\bin\Debug\Translate2.pdb
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.csproj.AssemblyReference.cache
-D:\Code\Translate2\Translate2\obj\Debug\Translate2.Form1.resources
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.Properties.Resources.resources
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.csproj.GenerateResource.cache
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.csproj.CoreCompileInputs.cache
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.exe
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.pdb
+D:\Code\Translate2\Translate2\obj\Debug\Translate2.MainForm.resources
+D:\Code\Translate2\Translate2\obj\Debug\Translate2.TestControll.resources
