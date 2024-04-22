@@ -17,8 +17,11 @@ namespace Translate2
         public MainForm()
         {
             InitializeComponent();
-            
 
+            /*InitializeContextMenuStrip();
+
+            // 关联ComboBox的SelectedIndexChanged事件到事件处理程序  
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);*/
         }
 
         private void 新建项目ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,6 +36,11 @@ namespace Translate2
                 string selectedFilePath = openFileDialog.FileName;
                 Docx d = new Docx(selectedFilePath);
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
