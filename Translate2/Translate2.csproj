@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Data\DOCX\Docx.cs" />
     <Compile Include="Data\ELanguage.cs" />
+    <Compile Include="Data\TranslateUnitPair.cs" />
     <Compile Include="ExtendFunction\MachineTranslate.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -91,6 +92,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubViews\MachineTranslate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\MachineTranslate.Designer.cs">
+      <DependentUpon>MachineTranslate.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestControll.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +116,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SubViews\MachineTranslate.resx">
+      <DependentUpon>MachineTranslate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestControll.resx">
       <DependentUpon>TestControll.cs</DependentUpon>
     </EmbeddedResource>

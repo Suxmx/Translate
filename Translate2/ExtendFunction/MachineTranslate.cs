@@ -14,12 +14,16 @@ namespace MachineTranslation
         private readonly string _apiKey;
         private readonly string _baseUrl = "https://fanyi-api.baidu.com/api/trans/vip/translate";
 
+        public Translator()
+        {
+            _apiKey = "uacq7V6k6wjqDvpc_QQ3";
+        }
         public Translator(string apiKey)
         {
             _apiKey = apiKey;
         }
 
-        public async Task<string> TranslateText(string text, string targetLanguage, string userAppid = null)
+        public async Task<string> TranslateText(string text, string targetLanguage, string userAppid = "20240415002024918")
         {
             if (string.IsNullOrEmpty(userAppid))
             {
