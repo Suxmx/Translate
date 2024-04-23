@@ -62,5 +62,9 @@ namespace Translate2.Data.DOCX
         {
             return m_Paras[index];
         }
+        public List<string> GetAllParas()
+        {
+            return m_Paras;
+        }
     }
 }

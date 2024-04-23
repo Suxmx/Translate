@@ -68,3 +68,6 @@ D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.exe
 D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.pdb
 D:\machine_translate_assistant\Translate\Translate2\bin\Debug\Newtonsoft.Json.dll
 D:\machine_translate_assistant\Translate\Translate2\bin\Debug\Newtonsoft.Json.xml
+D:\Code\Translate2\Translate2\bin\Debug\Newtonsoft.Json.dll
+D:\Code\Translate2\Translate2\bin\Debug\Newtonsoft.Json.xml
+D:\Code\Translate2\Translate2\obj\Debug\Translate2.SubViews.MachineTranslate.resources
