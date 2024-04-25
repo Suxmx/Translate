@@ -71,3 +71,4 @@ D:\machine_translate_assistant\Translate\Translate2\bin\Debug\Newtonsoft.Json.xm
 D:\Code\Translate2\Translate2\bin\Debug\Newtonsoft.Json.dll
 D:\Code\Translate2\Translate2\bin\Debug\Newtonsoft.Json.xml
 D:\Code\Translate2\Translate2\obj\Debug\Translate2.SubViews.MachineTranslate.resources
+D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.SubViews.MachineTranslate.resources

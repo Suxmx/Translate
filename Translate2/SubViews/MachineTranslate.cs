@@ -23,7 +23,7 @@ namespace Translate2.SubViews
 
         private async void onClickMachineTranslateBtn(object sender, EventArgs e)
         {
-            string s=await translator.TranslateText(textBox1.Text, "English");
+            string s=await translator.TranslateText(textBox1.Text, "zh");
             textBox2.Text = s;
         }
     }
