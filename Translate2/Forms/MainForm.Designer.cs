@@ -106,7 +106,7 @@
             this.EditorTableLayout.RowCount = 2;
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.EditorTableLayout.Size = new System.Drawing.Size(514, 549);
+            this.EditorTableLayout.Size = new System.Drawing.Size(514, 553);
             this.EditorTableLayout.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -209,14 +209,14 @@
             // 新建项目ToolStripMenuItem
             // 
             this.新建项目ToolStripMenuItem.Name = "新建项目ToolStripMenuItem";
-            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.新建项目ToolStripMenuItem.Text = "新建项目";
             this.新建项目ToolStripMenuItem.Click += new System.EventHandler(this.onCreateNewProject);
             // 
             // 打开项目ToolStripMenuItem
             // 
             this.打开项目ToolStripMenuItem.Name = "打开项目ToolStripMenuItem";
-            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.打开项目ToolStripMenuItem.Text = "打开项目";
             // 
             // 设置ToolStripMenuItem

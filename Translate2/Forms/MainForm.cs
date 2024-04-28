@@ -57,6 +57,8 @@ namespace Translate2
                     newBox.WordWrap = true;
                     newBox.TextChanged += SettxtHeight;
                     newBox.Click += TransferText2MachineView;
+                    newBox.BackColor= System.Drawing.SystemColors.Menu;
+                    newBox.BorderStyle = BorderStyle.None;
 
                     Label label = new Label();
                     label.Text = d.GetParaByIndex(i);
@@ -115,16 +117,15 @@ namespace Translate2
         private void SettxtHeight(object sender, EventArgs e)
         {
             TextBox txt1 = (TextBox)sender;
-            int txtHeight = 7;//设置单行的行高
-            int MaxLineCount = 10;//设置最大行数
+            int txtHeight = 9;//设置单行的行高
             Size size = TextRenderer.MeasureText(txt1.Text, txt1.Font);
             int itxtLine = size.Width / txt1.Width + txt1.Lines.Count() + 1;
-            //if (itxtLine > MaxLineCount) { itxtLine = MaxLineCount; }
             txt1.Height = txtHeight * itxtLine;
         }
         private void TransferText2MachineView(object sender, EventArgs e)
         {
             MachineTranslateView.textBox1.Text = textBoxLabelPairs[(TextBox)(sender)].Text;
+            MachineTranslateView.textBox2.Text = string.Empty;
         }
 
     }
