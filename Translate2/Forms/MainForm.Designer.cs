@@ -64,7 +64,11 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+<<<<<<< HEAD
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1060, 601);
+=======
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1448, 847);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -81,7 +85,11 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 99.99999F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+<<<<<<< HEAD
             this.tableLayoutPanel3.Size = new System.Drawing.Size(524, 595);
+=======
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(718, 841);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // label1
@@ -106,7 +114,11 @@
             this.EditorTableLayout.RowCount = 2;
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+<<<<<<< HEAD
             this.EditorTableLayout.Size = new System.Drawing.Size(514, 549);
+=======
+            this.EditorTableLayout.Size = new System.Drawing.Size(708, 795);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.EditorTableLayout.TabIndex = 3;
             this.EditorTableLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.EditorTableLayout_Paint);
             // 
@@ -117,12 +129,16 @@
             this.tableLayoutPanel2.Controls.Add(this.RightUpTableLayout, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.RightDownTableLayout, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(533, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(727, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+<<<<<<< HEAD
             this.tableLayoutPanel2.Size = new System.Drawing.Size(524, 595);
+=======
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(718, 841);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // RightUpTableLayout
@@ -138,7 +154,11 @@
             this.RightUpTableLayout.RowCount = 2;
             this.RightUpTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.RightUpTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+<<<<<<< HEAD
             this.RightUpTableLayout.Size = new System.Drawing.Size(518, 291);
+=======
+            this.RightUpTableLayout.Size = new System.Drawing.Size(712, 414);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.RightUpTableLayout.TabIndex = 0;
             // 
             // comboBox2
@@ -158,12 +178,20 @@
             this.RightDownTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.RightDownTableLayout.Controls.Add(this.comboBox3, 0, 0);
             this.RightDownTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+<<<<<<< HEAD
             this.RightDownTableLayout.Location = new System.Drawing.Point(3, 300);
+=======
+            this.RightDownTableLayout.Location = new System.Drawing.Point(3, 423);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.RightDownTableLayout.Name = "RightDownTableLayout";
             this.RightDownTableLayout.RowCount = 2;
             this.RightDownTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.RightDownTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+<<<<<<< HEAD
             this.RightDownTableLayout.Size = new System.Drawing.Size(518, 292);
+=======
+            this.RightDownTableLayout.Size = new System.Drawing.Size(712, 415);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.RightDownTableLayout.TabIndex = 1;
             // 
             // comboBox3
@@ -186,7 +214,11 @@
             this.测试ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+<<<<<<< HEAD
             this.menuStrip1.Size = new System.Drawing.Size(1060, 36);
+=======
+            this.menuStrip1.Size = new System.Drawing.Size(1448, 32);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -230,14 +262,18 @@
             this.MachineTranslateView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MachineTranslateView.Location = new System.Drawing.Point(5, 41);
             this.MachineTranslateView.Name = "MachineTranslateView";
+<<<<<<< HEAD
             this.MachineTranslateView.Size = new System.Drawing.Size(508, 245);
+=======
+            this.MachineTranslateView.Size = new System.Drawing.Size(702, 368);
+>>>>>>> 49bd80a2373532f11406afc38d7a69b0bb82ccfa
             this.MachineTranslateView.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1060, 637);
+            this.ClientSize = new System.Drawing.Size(1448, 879);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
