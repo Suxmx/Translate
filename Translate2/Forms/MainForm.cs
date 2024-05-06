@@ -128,5 +128,9 @@ namespace Translate2
             MachineTranslateView.textBox2.Text = string.Empty;
         }
 
+        private void EditorTableLayout_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

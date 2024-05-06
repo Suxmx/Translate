@@ -35,7 +35,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.RightUpTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.MachineTranslateView = new Translate2.SubViews.MachineTranslate();
             this.RightDownTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -44,6 +43,7 @@
             this.打开项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MachineTranslateView = new Translate2.SubViews.MachineTranslate();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -60,11 +60,11 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 32);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 36);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1060, 605);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1060, 601);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -81,7 +81,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 99.99999F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(524, 599);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(524, 595);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // label1
@@ -106,8 +106,9 @@
             this.EditorTableLayout.RowCount = 2;
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.EditorTableLayout.Size = new System.Drawing.Size(514, 553);
+            this.EditorTableLayout.Size = new System.Drawing.Size(514, 549);
             this.EditorTableLayout.TabIndex = 3;
+            this.EditorTableLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.EditorTableLayout_Paint);
             // 
             // tableLayoutPanel2
             // 
@@ -121,7 +122,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(524, 599);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(524, 595);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // RightUpTableLayout
@@ -137,7 +138,7 @@
             this.RightUpTableLayout.RowCount = 2;
             this.RightUpTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.RightUpTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.RightUpTableLayout.Size = new System.Drawing.Size(518, 293);
+            this.RightUpTableLayout.Size = new System.Drawing.Size(518, 291);
             this.RightUpTableLayout.TabIndex = 0;
             // 
             // comboBox2
@@ -150,14 +151,6 @@
             this.comboBox2.TabIndex = 1;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.onUpComboBoxChange);
             // 
-            // MachineTranslateView
-            // 
-            this.MachineTranslateView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MachineTranslateView.Location = new System.Drawing.Point(5, 41);
-            this.MachineTranslateView.Name = "MachineTranslateView";
-            this.MachineTranslateView.Size = new System.Drawing.Size(508, 247);
-            this.MachineTranslateView.TabIndex = 2;
-            // 
             // RightDownTableLayout
             // 
             this.RightDownTableLayout.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
@@ -165,12 +158,12 @@
             this.RightDownTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.RightDownTableLayout.Controls.Add(this.comboBox3, 0, 0);
             this.RightDownTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightDownTableLayout.Location = new System.Drawing.Point(3, 302);
+            this.RightDownTableLayout.Location = new System.Drawing.Point(3, 300);
             this.RightDownTableLayout.Name = "RightDownTableLayout";
             this.RightDownTableLayout.RowCount = 2;
             this.RightDownTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.RightDownTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.RightDownTableLayout.Size = new System.Drawing.Size(518, 294);
+            this.RightDownTableLayout.Size = new System.Drawing.Size(518, 292);
             this.RightDownTableLayout.TabIndex = 1;
             // 
             // comboBox3
@@ -193,7 +186,7 @@
             this.测试ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1060, 32);
+            this.menuStrip1.Size = new System.Drawing.Size(1060, 36);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -203,34 +196,42 @@
             this.新建项目ToolStripMenuItem,
             this.打开项目ToolStripMenuItem});
             this.项目ToolStripMenuItem.Name = "项目ToolStripMenuItem";
-            this.项目ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
+            this.项目ToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
             this.项目ToolStripMenuItem.Text = "文件";
             // 
             // 新建项目ToolStripMenuItem
             // 
             this.新建项目ToolStripMenuItem.Name = "新建项目ToolStripMenuItem";
-            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.新建项目ToolStripMenuItem.Text = "新建项目";
             this.新建项目ToolStripMenuItem.Click += new System.EventHandler(this.onCreateNewProject);
             // 
             // 打开项目ToolStripMenuItem
             // 
             this.打开项目ToolStripMenuItem.Name = "打开项目ToolStripMenuItem";
-            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.打开项目ToolStripMenuItem.Text = "打开项目";
             // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 测试ToolStripMenuItem
             // 
             this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
-            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
             this.测试ToolStripMenuItem.Text = "测试";
             this.测试ToolStripMenuItem.Click += new System.EventHandler(this.onClickTestButton);
+            // 
+            // MachineTranslateView
+            // 
+            this.MachineTranslateView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MachineTranslateView.Location = new System.Drawing.Point(5, 41);
+            this.MachineTranslateView.Name = "MachineTranslateView";
+            this.MachineTranslateView.Size = new System.Drawing.Size(508, 245);
+            this.MachineTranslateView.TabIndex = 2;
             // 
             // MainForm
             // 
