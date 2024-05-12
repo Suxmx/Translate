@@ -103,6 +103,12 @@
     <Compile Include="SubViews\MachineTranslate.Designer.cs">
       <DependentUpon>MachineTranslate.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubViews\TermBaseUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\TermBaseUI.Designer.cs">
+      <DependentUpon>TermBaseUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestControll.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="SubViews\MachineTranslate.resx">
       <DependentUpon>MachineTranslate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubViews\TermBaseUI.resx">
+      <DependentUpon>TermBaseUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestControll.resx">
       <DependentUpon>TestControll.cs</DependentUpon>

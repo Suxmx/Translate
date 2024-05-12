@@ -4,19 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using FuzzySharp;
 using System.Windows.Forms;
+using Translate2.ExtendFunction;
 
 public class MyDictionary
 {
+    private FuzzyMatchingTool fuzzyMatcher;
     private Dictionary<string, string> dictionary = new Dictionary<string, string>();
     private string keyOfDictionary = null;
     public MyDictionary()
     {
-        loadDictionary("TermDictionary.txt");
+        LoadDictionary("../TermDictionary/dictionary");
     }
-    private void loadDictionary(string filePath)
+    private void LoadDictionary(string filePath)
     {
         try
         {
@@ -37,6 +37,31 @@ public class MyDictionary
         catch(Exception ex)
         {
             MessageBox.Show($"failed loading dictionary: {ex.Message}", "Error");
+        }
+    }
+
+    public string useTheDictionary(string target)
+    {
+        string resultString = SearchDictionary(target);
+        if(resultString == null)
+        {
+            return "找不到目标词汇，请检查拼写";
+        }
+        if (resultString == target)
+            return dictionary[target];
+        else
+            return "你是否想找\n" + dictionary[resultString];
+    }
+
+    private string SearchDictionary(string target)
+    {
+        if(dictionary.ContainsKey(target))
+        {
+            return target;
+        }
+        else
+        {
+            return fuzzyMatcher.FuzzyMatching(dictionary, target);
         }
     }
 }

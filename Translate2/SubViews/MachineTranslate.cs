@@ -17,6 +17,7 @@ namespace Translate2.SubViews
         public MachineTranslate()
         {
             InitializeComponent();
+            textBox2.ReadOnly = true;
             TranslateBtn.Click += onClickMachineTranslateBtn;
             translator = new Translator();
         }
