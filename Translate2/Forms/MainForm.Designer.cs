@@ -42,6 +42,7 @@
             this.项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,7 +109,6 @@
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.EditorTableLayout.Size = new System.Drawing.Size(708, 795);
             this.EditorTableLayout.TabIndex = 3;
-            this.EditorTableLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.EditorTableLayout_Paint);
             // 
             // tableLayoutPanel2
             // 
@@ -157,9 +157,10 @@
             // MachineTranslateView
             // 
             this.MachineTranslateView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MachineTranslateView.Location = new System.Drawing.Point(5, 41);
+            this.MachineTranslateView.Location = new System.Drawing.Point(4, 40);
+            this.MachineTranslateView.Margin = new System.Windows.Forms.Padding(2);
             this.MachineTranslateView.Name = "MachineTranslateView";
-            this.MachineTranslateView.Size = new System.Drawing.Size(702, 368);
+            this.MachineTranslateView.Size = new System.Drawing.Size(704, 370);
             this.MachineTranslateView.TabIndex = 2;
             // 
             // RightDownTableLayout
@@ -205,7 +206,8 @@
             // 
             this.项目ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新建项目ToolStripMenuItem,
-            this.打开项目ToolStripMenuItem});
+            this.打开项目ToolStripMenuItem,
+            this.保存项目ToolStripMenuItem});
             this.项目ToolStripMenuItem.Name = "项目ToolStripMenuItem";
             this.项目ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.项目ToolStripMenuItem.Text = "文件";
@@ -213,15 +215,22 @@
             // 新建项目ToolStripMenuItem
             // 
             this.新建项目ToolStripMenuItem.Name = "新建项目ToolStripMenuItem";
-            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.新建项目ToolStripMenuItem.Text = "新建项目";
             this.新建项目ToolStripMenuItem.Click += new System.EventHandler(this.onCreateNewProject);
             // 
             // 打开项目ToolStripMenuItem
             // 
             this.打开项目ToolStripMenuItem.Name = "打开项目ToolStripMenuItem";
-            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.打开项目ToolStripMenuItem.Text = "打开项目";
+            // 
+            // 保存项目ToolStripMenuItem
+            // 
+            this.保存项目ToolStripMenuItem.Name = "保存项目ToolStripMenuItem";
+            this.保存项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.保存项目ToolStripMenuItem.Text = "保存项目";
+            this.保存项目ToolStripMenuItem.Click += new System.EventHandler(this.OnClickSaveProj);
             // 
             // 设置ToolStripMenuItem
             // 
@@ -276,6 +285,7 @@
         private SubViews.MachineTranslate MachineTranslateView;
         private System.Windows.Forms.TableLayoutPanel EditorTableLayout;
         private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 保存项目ToolStripMenuItem;
     }
 }
 

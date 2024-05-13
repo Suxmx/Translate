@@ -13,19 +13,29 @@ namespace Translate2.SubViews
 {
     public partial class MachineTranslate : UserControl
     {
+        public TextBox TextBox;
+
         private Translator translator;
         public MachineTranslate()
         {
             InitializeComponent();
-            textBox2.ReadOnly = true;
-            TranslateBtn.Click += onClickMachineTranslateBtn;
+            outputBox.ReadOnly = true;
+            translateBtn.Click += OnClickTranslate;
+
             translator = new Translator();
         }
-
-        private async void onClickMachineTranslateBtn(object sender, EventArgs e)
+        private async void OnClickTranslate(object sender, EventArgs e)
         {
-            string s=await translator.TranslateText(textBox1.Text, "zh");
-            textBox2.Text = s;
+            if (string.IsNullOrEmpty(inputBox.Text))
+                return;
+            string s = await translator.TranslateText(inputBox.Text, "zh");
+            outputBox.Text = s;
+        }
+
+        private void OnCickFill(object sender, EventArgs e)
+        {
+            if(TextBox!=null)
+                TextBox.Text=outputBox.Text;
         }
     }
 }
