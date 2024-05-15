@@ -74,3 +74,5 @@ D:\Code\Translate2\Translate2\obj\Debug\Translate2.SubViews.MachineTranslate.res
 D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.SubViews.MachineTranslate.resources
 D:\machine_translate_assistant\Translate\Translate2\bin\Debug\FuzzySharp.dll
 D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.SubViews.TermBaseUI.resources
+D:\Code\Translate2\Translate2\obj\Debug\Translate2.SubViews.TermBaseUI.resources
+D:\Code\Translate2\Translate2\bin\Debug\FuzzySharp.dll

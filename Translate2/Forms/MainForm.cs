@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translate2.Data;
 using Translate2.Data.DOCX;
 using Translate2.SubViews;
 
@@ -124,13 +125,34 @@ namespace Translate2
         }
         private void TransferText2MachineView(object sender, EventArgs e)
         {
-            MachineTranslateView.textBox1.Text = textBoxLabelPairs[(TextBox)(sender)].Text;
-            MachineTranslateView.textBox2.Text = string.Empty;
+            MachineTranslateView.inputBox.Text = textBoxLabelPairs[(TextBox)(sender)].Text;
+            MachineTranslateView.outputBox.Text = string.Empty;
+            MachineTranslateView.TextBox = (TextBox)(sender);
+
         }
 
-        private void EditorTableLayout_Paint(object sender, PaintEventArgs e)
+        private void OnClickSaveProj(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "保存文件";
+            saveFileDialog.InitialDirectory = @"C:\";
+            saveFileDialog.Filter = "Json 文件 (*.json)|*.json";
+            DialogResult result = saveFileDialog.ShowDialog();
 
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+            string path = saveFileDialog.FileName;
+            ProjectSaveData data = new ProjectSaveData(path);
+
+            foreach (var pair in textBoxLabelPairs)
+            {
+                data.OriginTexts.Add(pair.Value.Text);
+                data.TranslateTexts.Add(pair.Key.Text);
+            }
+
+            data.Save();
         }
     }
 }
