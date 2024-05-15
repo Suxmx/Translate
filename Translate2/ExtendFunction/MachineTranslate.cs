@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 
 namespace MachineTranslation
 {
@@ -70,7 +72,10 @@ namespace MachineTranslation
                         if (translationResponse.TransResult != null && translationResponse.TransResult.Count > 0)
                         {
                             // 返回第一个翻译结果的译文  
-                            return translationResponse.TransResult[0].Dst;
+                            string resultString = translationResponse.TransResult[0].Dst;
+                            for(int i = 1; i <  translationResponse.TransResult.Count; i++)
+                                resultString = resultString + "\r\n" + translationResponse.TransResult[i].Dst;
+                            return resultString;
                         }
                         else
                         {
