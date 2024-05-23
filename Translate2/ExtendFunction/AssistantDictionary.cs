@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ public class MyDictionary
 {
     private FuzzyMatchingTool fuzzyMatcher;
     private Dictionary<string, string> dictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-    private string keyOfDictionary = null;
+    private string keyOfDictionary = string.Empty;
     public MyDictionary()
     {
         fuzzyMatcher = new FuzzyMatchingTool();
@@ -24,10 +25,17 @@ public class MyDictionary
             int lineCount = 0;
             foreach(var line in File.ReadAllLines(filePath))
             {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
                 lineCount = (lineCount + 1) % 2;
                 if(lineCount == 0) //释义
                 {
-                    dictionary[keyOfDictionary] = line.Trim();
+                    if (dictionary.ContainsKey(keyOfDictionary))
+                        dictionary[keyOfDictionary] += "\r\n" + line.Trim();
+                    else
+                    {
+                        dictionary[keyOfDictionary] = line.Trim();
+                    }
                 }
                 else //词条 
                 {
@@ -46,7 +54,9 @@ public class MyDictionary
         int costTime = 0;
         string resultString = SearchDictionary(target, ref costTime);
         if (resultString == target)
+        {
             return dictionary[target];
+        }
         else if(resultString != target)
         {
             if (resultString != null)
