@@ -40,6 +40,10 @@ namespace Translate2.Data
             {
                 OriginTexts.Add(d);
             }
+            foreach(var d in data.TranslateTexts)
+            {
+                TranslateTexts.Add(d);
+            }
         }
 
         public void Save()

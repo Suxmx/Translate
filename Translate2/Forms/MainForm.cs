@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,48 +34,7 @@ namespace Translate2
 
         private void onCreateNewProject(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "选择文件";
-            openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "Word 文档 (*.docx, *.doc)|*.docx;*.doc";
-            DialogResult result = openFileDialog.ShowDialog();
-            Docx d = null;
-            if (result == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-                d = new Docx(selectedFilePath);
-            }
-            if (d!=null)
-            {
-                for(int i=0;i<d.ParaCount;i++)
-                {
-                    RowStyle style = new RowStyle(SizeType.AutoSize);
-                    EditorTableLayout.RowStyles.Add(style);
-                    EditorTableLayout.RowCount++;
-
-                    TextBox newBox = new TextBox();
-                    newBox.Dock = DockStyle.Fill;
-                    newBox.Multiline = true;
-                    newBox.WordWrap = true;
-                    newBox.TextChanged += SettxtHeight;
-                    newBox.Click += TransferText2MachineView;
-                    newBox.BackColor= System.Drawing.SystemColors.Menu;
-                    newBox.BorderStyle = BorderStyle.None;
-
-                    Label label = new Label();
-                    label.Text = d.GetParaByIndex(i);
-                    label.Dock = DockStyle.Fill;
-                    label.AutoSize = true;
-
-                    textBoxLabelPairs.Add(newBox, label);
-
-                    EditorTableLayout.Controls.Add(newBox, 0, testCnt);
-                    EditorTableLayout.Controls.Add(label, 0, testCnt++);
-                }
-            }
-            //RowStyle style = new RowStyle();
-
-            //EditorTableLayout.
+            cleanEditor();
         }
 
 
@@ -155,20 +115,144 @@ namespace Translate2
             data.Save();
         }
 
-        private void onClickOpenProject(object sender, EventArgs e)
+
+        private void onClickImportDoc(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "选择文件";
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.Filter = "Word 文档 (*.docx, *.doc)|*.docx;*.doc";
+            DialogResult result = openFileDialog.ShowDialog();
+            Docx d = null;
+            if (result == DialogResult.OK)
+            {
+                string selectedFilePath = openFileDialog.FileName;
+                d = new Docx(selectedFilePath);
+            }
+            if (d != null)
+            {
+                cleanEditor();
+                for (int i = 0; i < d.ParaCount; i++)
+                {
+                    RowStyle style = new RowStyle(SizeType.AutoSize);
+                    EditorTableLayout.RowStyles.Add(style);
+                    EditorTableLayout.RowCount++;
+
+                    TextBox newBox = new TextBox();
+                    newBox.Dock = DockStyle.Fill;
+                    newBox.Multiline = true;
+                    newBox.WordWrap = true;
+                    newBox.TextChanged += SettxtHeight;
+                    newBox.Click += TransferText2MachineView;
+                    newBox.BackColor = System.Drawing.SystemColors.Menu;
+                    newBox.BorderStyle = BorderStyle.None;
+
+                    Label label = new Label();
+                    label.Text = d.GetParaByIndex(i);
+                    label.Dock = DockStyle.Fill;
+                    label.AutoSize = true;
+
+                    textBoxLabelPairs.Add(newBox, label);
+
+                    EditorTableLayout.Controls.Add(newBox, 0, testCnt);
+                    EditorTableLayout.Controls.Add(label, 0, testCnt++);
+                }
+            }
+        }
+        private void cleanEditor()
+        {
+            testCnt = 0;
+            textBoxLabelPairs.Clear();
+            EditorTableLayout.Controls.Clear();
+        }
+
+        private async void  onClickOpenProject(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "选择文件";
             openFileDialog.InitialDirectory = @"C:\";
             openFileDialog.Filter = "Json 文件 (*.json)|*.json";
             DialogResult result = openFileDialog.ShowDialog();
-            if(result != DialogResult.OK)
+            List<TextBox> newBoxs=new List<TextBox>();
+            if (result != DialogResult.OK)
             {
                 return;
-            }    
+            }
             string path = openFileDialog.FileName;
             ProjectSaveData data = new ProjectSaveData(path);
             data.Load();
+            cleanEditor();
+            for (int i = 0; i < data.OriginTexts.Count; i++)
+            {
+                if(i>0)
+                {
+                    RowStyle style = new RowStyle(SizeType.AutoSize);
+                    EditorTableLayout.RowStyles.Add(style);
+                    EditorTableLayout.RowCount++;
+                }
+                else
+                {
+                    EditorTableLayout.RowStyles[0]= new RowStyle(SizeType.AutoSize);
+                }
+
+                TextBox newBox = new TextBox();
+                newBox.Dock = DockStyle.Fill;
+                newBox.Multiline = true;
+                newBox.WordWrap = true;
+                newBox.Click += TransferText2MachineView;
+                newBox.BackColor = System.Drawing.SystemColors.Menu;
+                newBox.BorderStyle = BorderStyle.None;
+                newBox.TextChanged += SettxtHeight;
+                newBoxs.Add(newBox);
+                //newBox.Text = i < data.TranslateTexts.Count ? data.TranslateTexts[i] : string.Empty;
+
+
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.AutoSize = true;
+                //await Task.Delay(50);  
+                label.Text = data.OriginTexts[i];
+                
+
+                textBoxLabelPairs.Add(newBox, label);
+
+                EditorTableLayout.Controls.Add(newBox, 0, testCnt);
+                EditorTableLayout.Controls.Add(label, 0, testCnt++);
+            }
+            await Task.Delay(50);
+            for (int i = 0; i < data.OriginTexts.Count; i++)
+            {
+                TextBox newBox = newBoxs[i];
+                newBox.Text = i < data.TranslateTexts.Count ? data.TranslateTexts[i] : string.Empty;
+            }
+        }
+
+        private void onClickExport(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "导出文件";
+            saveFileDialog.InitialDirectory = @"C:\";
+            saveFileDialog.Filter = "txt 文件 (*.txt)|*.txt";
+            DialogResult result = saveFileDialog.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+            string path = saveFileDialog.FileName;
+            using (StreamWriter writer=new StreamWriter(path))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    if(string.IsNullOrEmpty(pair.Key.Text))
+                    {
+                        writer.WriteLine(pair.Value.Text);
+                    }
+                    else
+                    {
+                        writer.WriteLine(pair.Key.Text);
+                    }
+                }
+            }
         }
     }
 }
