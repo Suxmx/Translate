@@ -12,9 +12,17 @@ namespace Translate2.SubViews
 {
     public partial class TermBaseUI : UserControl
     {
+        private MyDictionary termDictionary;
         public TermBaseUI()
         {
             InitializeComponent();
+            termDictionary = new MyDictionary();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string queryString = textBox1.Text;
+            textBox2.Text = termDictionary.useTheDictionary(queryString);
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 
 namespace MachineTranslation
 {
@@ -13,6 +15,7 @@ namespace MachineTranslation
     {
         private readonly string _apiKey;
         private readonly string _baseUrl = "https://fanyi-api.baidu.com/api/trans/vip/translate";
+        private string resultString;
 
         public Translator()
         {
@@ -60,22 +63,34 @@ namespace MachineTranslation
                         TranslationResponse translationResponse = JsonConvert.DeserializeObject<TranslationResponse>(responseContent);
 
                         // 检查是否有错误码  
-                        if (translationResponse.ErrorCode.HasValue && translationResponse.ErrorCode != 0)
+                        if (translationResponse.ErrorCode.HasValue && translationResponse.ErrorCode != 0 && translationResponse.ErrorCode != 54003)
                         {
                             // 如果有错误码且不为0，抛出异常并包含错误码信息  
-                            throw new Exception($"翻译失败，错误码：{translationResponse.ErrorCode}");
+                            //throw new Exception($"翻译失败，错误码：{translationResponse.ErrorCode}");
+                            MessageBox.Show($"出现错误码： {translationResponse.ErrorCode}");
                         }
-
+                        bool flag = false;
                         // 检查翻译结果列表是否为空或没有元素  
                         if (translationResponse.TransResult != null && translationResponse.TransResult.Count > 0)
                         {
+                            flag = true;
                             // 返回第一个翻译结果的译文  
-                            return translationResponse.TransResult[0].Dst;
+                            resultString = translationResponse.TransResult[0].Dst;
+                            for (int i = 1; i < translationResponse.TransResult.Count; i++)
+                                resultString = resultString + "\r\n" + translationResponse.TransResult[i].Dst;
+                            return resultString;
                         }
                         else
                         {
                             // 如果没有找到翻译结果，抛出异常  
-                            throw new Exception("未找到翻译结果");
+                            //throw new Exception("未找到翻译结果");
+                            if (!flag)
+                            {
+                                MessageBox.Show("未找到翻译结果");
+                                return null;
+                            }
+                            else
+                                return resultString;
                         }
                     }
                     catch (JsonReaderException e)
@@ -112,7 +127,7 @@ namespace MachineTranslation
         }
     }
 
-    
+
 
     public class BaiduTranslateSignatureGenerator
     {
@@ -141,8 +156,8 @@ namespace MachineTranslation
         }
     }
 
-    
-  
+
+
     public class TranslationResultItem
     {
         [JsonProperty("src")]

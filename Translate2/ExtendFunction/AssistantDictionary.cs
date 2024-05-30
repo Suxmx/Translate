@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,11 +11,12 @@ using Translate2.ExtendFunction;
 public class MyDictionary
 {
     private FuzzyMatchingTool fuzzyMatcher;
-    private Dictionary<string, string> dictionary = new Dictionary<string, string>();
-    private string keyOfDictionary = null;
+    private Dictionary<string, string> dictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    private string keyOfDictionary = string.Empty;
     public MyDictionary()
     {
-        LoadDictionary("../TermDictionary/dictionary");
+        fuzzyMatcher = new FuzzyMatchingTool();
+        LoadDictionary("../../termDictionary/dictionary.txt");
     }
     private void LoadDictionary(string filePath)
     {
@@ -23,10 +25,17 @@ public class MyDictionary
             int lineCount = 0;
             foreach(var line in File.ReadAllLines(filePath))
             {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
                 lineCount = (lineCount + 1) % 2;
                 if(lineCount == 0) //释义
                 {
-                    dictionary[keyOfDictionary] = line.Trim();
+                    if (dictionary.ContainsKey(keyOfDictionary))
+                        dictionary[keyOfDictionary] += "\r\n" + line.Trim();
+                    else
+                    {
+                        dictionary[keyOfDictionary] = line.Trim();
+                    }
                 }
                 else //词条 
                 {
@@ -42,18 +51,26 @@ public class MyDictionary
 
     public string useTheDictionary(string target)
     {
-        string resultString = SearchDictionary(target);
-        if(resultString == null)
-        {
-            return "找不到目标词汇，请检查拼写";
-        }
+        int costTime = 0;
+        string resultString = SearchDictionary(target, ref costTime);
         if (resultString == target)
+        {
             return dictionary[target];
-        else
-            return "你是否想找\n" + dictionary[resultString];
+        }
+        else if(resultString != target)
+        {
+            if (resultString != null)
+            {
+                resultString = "你是否想找\r\n" + resultString + "\r\n" + dictionary[resultString] + $"\r\n模糊匹配用时：{costTime}ms";
+                return resultString;
+            }
+            else
+                return $"对不起，找不到该单词\r\n 匹配用时：{costTime}ms";
+        }
+        return null;
     }
 
-    private string SearchDictionary(string target)
+    private string SearchDictionary(string target, ref int costTime)
     {
         if(dictionary.ContainsKey(target))
         {
@@ -61,7 +78,7 @@ public class MyDictionary
         }
         else
         {
-            return fuzzyMatcher.FuzzyMatching(dictionary, target);
+            return fuzzyMatcher.FuzzyMatching(dictionary, target, ref costTime);
         }
     }
 }
