@@ -154,5 +154,21 @@ namespace Translate2
 
             data.Save();
         }
+
+        private void onClickOpenProject(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "选择文件";
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.Filter = "Json 文件 (*.json)|*.json";
+            DialogResult result = openFileDialog.ShowDialog();
+            if(result != DialogResult.OK)
+            {
+                return;
+            }    
+            string path = openFileDialog.FileName;
+            ProjectSaveData data = new ProjectSaveData(path);
+            data.Load();
+        }
     }
 }

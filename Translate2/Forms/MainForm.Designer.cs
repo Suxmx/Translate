@@ -45,6 +45,7 @@
             this.保存项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.打开项目ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -207,7 +208,8 @@
             this.项目ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新建项目ToolStripMenuItem,
             this.打开项目ToolStripMenuItem,
-            this.保存项目ToolStripMenuItem});
+            this.保存项目ToolStripMenuItem,
+            this.打开项目ToolStripMenuItem1});
             this.项目ToolStripMenuItem.Name = "项目ToolStripMenuItem";
             this.项目ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.项目ToolStripMenuItem.Text = "文件";
@@ -223,7 +225,7 @@
             // 
             this.打开项目ToolStripMenuItem.Name = "打开项目ToolStripMenuItem";
             this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.打开项目ToolStripMenuItem.Text = "打开项目";
+            this.打开项目ToolStripMenuItem.Text = "导入Word";
             // 
             // 保存项目ToolStripMenuItem
             // 
@@ -244,6 +246,13 @@
             this.测试ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.测试ToolStripMenuItem.Text = "测试";
             this.测试ToolStripMenuItem.Click += new System.EventHandler(this.onClickTestButton);
+            // 
+            // 打开项目ToolStripMenuItem1
+            // 
+            this.打开项目ToolStripMenuItem1.Name = "打开项目ToolStripMenuItem1";
+            this.打开项目ToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.打开项目ToolStripMenuItem1.Text = "打开项目";
+            this.打开项目ToolStripMenuItem1.Click += new System.EventHandler(this.onClickOpenProject);
             // 
             // MainForm
             // 
@@ -286,6 +295,7 @@
         private System.Windows.Forms.TableLayoutPanel EditorTableLayout;
         private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 保存项目ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 打开项目ToolStripMenuItem1;
     }
 }
 
