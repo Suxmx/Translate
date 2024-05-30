@@ -37,5 +37,10 @@ namespace Translate2.SubViews
             if(TextBox!=null)
                 TextBox.Text=outputBox.Text;
         }
+
+        private void translateBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

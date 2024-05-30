@@ -73,6 +73,7 @@
             // inputBox
             // 
             this.inputBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.inputBox.Location = new System.Drawing.Point(3, 3);
             this.inputBox.Multiline = true;
             this.inputBox.Name = "inputBox";
@@ -82,6 +83,7 @@
             // outputBox
             // 
             this.outputBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.outputBox.Location = new System.Drawing.Point(211, 3);
             this.outputBox.Multiline = true;
             this.outputBox.Name = "outputBox";
@@ -117,7 +119,7 @@
             this.translateBtn.TabIndex = 0;
             this.translateBtn.Text = "翻译";
             this.translateBtn.UseVisualStyleBackColor = true;
-            this.translateBtn.Click += new System.EventHandler(this.OnClickTranslate);
+            this.translateBtn.Click += new System.EventHandler(this.translateBtn_Click);
             // 
             // fillBtn
             // 
