@@ -47,6 +47,7 @@ public class MyDictionary
         {
             MessageBox.Show($"failed loading dictionary: {ex.Message}", "Error");
         }
+        // MessageBox.Show($"the size is : {dictionary.Count}");
     }
 
     public string useTheDictionary(string target)
