@@ -15,6 +15,9 @@ public class MyDictionary
     private string keyOfDictionary = string.Empty;
     public MyDictionary()
     {
+        string currentDirectory = Directory.GetCurrentDirectory();
+        MessageBox.Show("Current Directory: " + currentDirectory);
+
         fuzzyMatcher = new FuzzyMatchingTool();
         LoadDictionary("../../termDictionary/dictionary.txt");
     }
