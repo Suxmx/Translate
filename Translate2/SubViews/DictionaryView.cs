@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Translate2.SubViews
 {
-    public partial class TermBaseUI : UserControl
+    public partial class DictionaryView : UserControl
     {
         private MyDictionary termDictionary;
-        public TermBaseUI()
+        public DictionaryView()
         {
             InitializeComponent();
             termDictionary = new MyDictionary();

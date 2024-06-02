@@ -16,7 +16,8 @@ public class MyDictionary
     public MyDictionary()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        MessageBox.Show("Current Directory: " + currentDirectory);
+        //MessageBox.Show("Current Directory: " + currentDirectory);
+        Console.WriteLine("Current Directory: " + currentDirectory);
 
         fuzzyMatcher = new FuzzyMatchingTool();
         LoadDictionary("../../termDictionary/dictionary.txt");
@@ -48,7 +49,8 @@ public class MyDictionary
         }
         catch(Exception ex)
         {
-            MessageBox.Show($"failed loading dictionary: {ex.Message}", "Error");
+            //MessageBox.Show($"failed loading dictionary: {ex.Message}", "Error");
+            Console.WriteLine($"failed loading dictionary: {ex.Message}", "Error");
         }
         // MessageBox.Show($"the size is : {dictionary.Count}");
     }

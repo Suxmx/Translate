@@ -100,17 +100,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubViews\FuzzyView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\FuzzyView.Designer.cs">
+      <DependentUpon>FuzzyView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubViews\MachineTranslate.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SubViews\MachineTranslate.Designer.cs">
       <DependentUpon>MachineTranslate.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubViews\TermBaseUI.cs">
+    <Compile Include="SubViews\DictionaryView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SubViews\TermBaseUI.Designer.cs">
-      <DependentUpon>TermBaseUI.cs</DependentUpon>
+    <Compile Include="SubViews\DictionaryView.Designer.cs">
+      <DependentUpon>DictionaryView.cs</DependentUpon>
     </Compile>
     <Compile Include="TestControll.cs">
       <SubType>UserControl</SubType>
@@ -131,11 +137,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SubViews\FuzzyView.resx">
+      <DependentUpon>FuzzyView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SubViews\MachineTranslate.resx">
       <DependentUpon>MachineTranslate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubViews\TermBaseUI.resx">
-      <DependentUpon>TermBaseUI.cs</DependentUpon>
+    <EmbeddedResource Include="SubViews\DictionaryView.resx">
+      <DependentUpon>DictionaryView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestControll.resx">
       <DependentUpon>TestControll.cs</DependentUpon>
