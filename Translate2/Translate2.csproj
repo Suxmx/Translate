@@ -90,6 +90,7 @@
     <Compile Include="Data\ProjectSaveData.cs" />
     <Compile Include="Data\TranslateUnitPair.cs" />
     <Compile Include="ExtendFunction\AssistantDictionary.cs" />
+    <Compile Include="ExtendFunction\MemoryBase.cs" />
     <Compile Include="ExtendFunction\FuzzyMatching.cs" />
     <Compile Include="ExtendFunction\MachineTranslate.cs" />
     <Compile Include="Forms\MainForm.cs">
