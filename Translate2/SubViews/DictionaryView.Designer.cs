@@ -1,6 +1,6 @@
 ﻿namespace Translate2.SubViews
 {
-    partial class TermBaseUI
+    partial class DictionaryView
     {
         /// <summary> 
         /// 必需的设计器变量。

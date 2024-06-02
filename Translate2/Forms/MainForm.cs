@@ -20,12 +20,30 @@ namespace Translate2
         private MachineTranslate machineTranslate => (MachineTranslate)RightUpTableLayout.Controls[1];
         private int testCnt = 0;
         private Dictionary<TextBox, Label> textBoxLabelPairs;
+
+        private string upWindowName, downWindowName;
+        private readonly List<string> windowNames = new List<string>() { "机器翻译", "词典", "模糊匹配", "术语库" };
+        /// <summary>
+        /// nooo
+        /// </summary>
+        private bool upUpdateManully, downUpdateManully;
         public MainForm()
         {
             InitializeComponent();
             EditorTableLayout.RowStyles.RemoveAt(0);
             EditorTableLayout.RowCount = 0;
             textBoxLabelPairs= new Dictionary<TextBox, Label>();
+            upWindowName = windowNames[0];
+            downWindowName = windowNames[1];
+            foreach(var s in windowNames)
+            {
+                upComboBox.Items.Add(s);
+                downComboBox.Items.Add(s);
+            }
+            upComboBox.SelectedIndex = 0;
+            downComboBox.SelectedIndex = 1;
+            upComboBox.SelectedIndexChanged += onUpComboBoxChange;
+            downComboBox.SelectedIndexChanged += onDownComboBoxChange;
             /*InitializeContextMenuStrip();
 
             // 关联ComboBox的SelectedIndexChanged事件到事件处理程序  
@@ -37,15 +55,127 @@ namespace Translate2
             cleanEditor();
         }
 
+        private void switchUpDownViews()
+        {
+            
+            int upIndex, downIndex;
+            upIndex=GetViewIndexByName(upWindowName);
+            downIndex = GetViewIndexByName(downWindowName);
+            upUpdateManully = true;
+            downUpdateManully = true;
+            upComboBox.SelectedIndex = downIndex;
+            downComboBox.SelectedIndex = upIndex;
+            upUpdateManully = false;
+            downUpdateManully = false;
+            Control upControl, downControl;
+            upControl = RightUpTableLayout.GetControlFromPosition(0, 1);
+            downControl = RightDownTableLayout.GetControlFromPosition(0, 1);
+            RightUpTableLayout.Controls.Remove(upControl);
+            RightDownTableLayout.Controls.Remove(downControl);
+            RightUpTableLayout.Controls.Add(downControl, 0, 1);
+            RightDownTableLayout.Controls.Add(upControl, 0, 1);
+            string tmp = upWindowName;
+            upWindowName = downWindowName;
+            downWindowName = tmp;
+            int al;
+
+        }
+        private int GetViewIndexByName(string name)
+        {
+            for(int i=0;i<windowNames.Count;i++)
+            {
+                if (string.CompareOrdinal(name, windowNames[i]) == 0)
+                    return i;
+            }
+            return -1;
+        }
 
         private void onUpComboBoxChange(object sender, EventArgs e)
         {
-
+            if (upUpdateManully)
+            {
+                return;
+            }
+            string chooseWindowName = (sender as ComboBox).Text;
+            if (string.CompareOrdinal(chooseWindowName, upWindowName) == 0)
+                return;
+            
+            if (string.CompareOrdinal(chooseWindowName, downWindowName) == 0)
+            {
+                switchUpDownViews();
+                return;
+            }
+            upWindowName = chooseWindowName;
+            int index = GetViewIndexByName(upWindowName);
+            
+            Control oldControl = RightUpTableLayout.GetControlFromPosition(0, 1);
+            RightUpTableLayout.Controls.Remove(oldControl);
+            Control newControl=null;
+            switch (index)
+            {
+                //机器翻译
+                case 0:
+                    newControl = new MachineTranslate();
+                    MachineTranslateView = newControl as MachineTranslate;
+                    break;
+                case 1:
+                    newControl = new DictionaryView();
+                    break;
+                case 2:
+                    newControl =new FuzzyView();    
+                    break;
+                case 3:
+                    //newControl
+                    break;
+            }
+            newControl.Dock = DockStyle.Fill;
+            
+            RightUpTableLayout.Controls.Add(newControl,0,1);
+            
         }
 
         private void onDownComboBoxChange(object sender, EventArgs e)
         {
+            if (downUpdateManully)
+            {
+                return;
+            }
+            string chooseWindowName = (sender as ComboBox).Text;
+            if (string.CompareOrdinal(chooseWindowName, downWindowName) == 0)
+                return;
+            
+            if (string.CompareOrdinal(upWindowName, chooseWindowName) == 0)
+            {
+                switchUpDownViews();
+                return;
+            }
+            downWindowName = chooseWindowName;
+            int index = GetViewIndexByName(downWindowName);
 
+            Control oldControl = RightDownTableLayout.GetControlFromPosition(0, 1);
+            RightDownTableLayout.Controls.Remove(oldControl);
+            Control newControl = null;
+            switch (index)
+            {
+                //机器翻译
+                case 0:
+                    newControl = new MachineTranslate();
+                    MachineTranslateView = newControl as MachineTranslate;
+                    break;
+                case 1:
+                    newControl = new DictionaryView();
+                    break;
+                case 2:
+                    newControl = new FuzzyView();
+                    break;
+                case 3:
+                    //newControl
+                    break;
+            }
+            newControl.Dock = DockStyle.Fill;
+            
+            RightDownTableLayout.Controls.Add(newControl, 0, 1);
+            
         }
 
         private void onClickTestButton(object sender, EventArgs e)
@@ -85,6 +215,7 @@ namespace Translate2
         }
         private void TransferText2MachineView(object sender, EventArgs e)
         {
+            if (MachineTranslateView is null) return;
             MachineTranslateView.inputBox.Text = textBoxLabelPairs[(TextBox)(sender)].Text;
             MachineTranslateView.outputBox.Text = string.Empty;
             MachineTranslateView.TextBox = (TextBox)(sender);
@@ -226,6 +357,8 @@ namespace Translate2
                 newBox.Text = i < data.TranslateTexts.Count ? data.TranslateTexts[i] : string.Empty;
             }
         }
+
+
 
         private void onClickExport(object sender, EventArgs e)
         {
