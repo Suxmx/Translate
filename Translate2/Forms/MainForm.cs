@@ -481,6 +481,55 @@ namespace Translate2
             }
     }
 
+        private void onClickExportCsv(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "导出文件";
+            saveFileDialog.InitialDirectory = @"C:\";
+            saveFileDialog.Filter = "csv 文件 (*.csv)|*.csv";
+            DialogResult result = saveFileDialog.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+            string path = saveFileDialog.FileName;
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    
+                    writer.Write($"\"{pair.Value.Text}\"");
+                    writer.Write(",");
+                    
+                }
+                writer.WriteLine();
+                foreach (var pair in textBoxLabelPairs)
+                {
+
+                    writer.Write($"\"{pair.Key.Text}\"");
+                    writer.Write(",");
+
+                }
+
+            }
+
+            string newFileName = "dictionary.txt"; // 新文件名
+            string destinationDirectory = "../../memoryDictionary/";
+            string destinationPath = Path.Combine(destinationDirectory, newFileName);
+
+            using (StreamWriter writer = new StreamWriter(destinationPath))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    if (pair.Key.Text.Trim().Length > 0)
+                    {
+                        writer.WriteLine(pair.Value.Text);
+                        writer.WriteLine(pair.Key.Text);
+                    }
+                }
+            }
+        }
+
         private async void  onClickOpenProject(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
