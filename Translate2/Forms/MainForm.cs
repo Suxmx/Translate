@@ -22,17 +22,18 @@ namespace Translate2
         private Dictionary<TextBox, Label> textBoxLabelPairs;
 
         private string upWindowName, downWindowName;
-        private readonly List<string> windowNames = new List<string>() { "机器翻译", "词典", "模糊匹配", "术语库" };
+        private readonly List<string> windowNames = new List<string>() { "机器翻译", "词典",  "术语库","记忆库" };
         /// <summary>
         /// nooo
         /// </summary>
         private bool upUpdateManully, downUpdateManully;
-        public MainForm()
+        public  MainForm()
         {
             InitializeComponent();
-            EditorTableLayout.RowStyles.RemoveAt(0);
+            textBoxLabelPairs = new Dictionary<TextBox, Label>();
             EditorTableLayout.RowCount = 0;
-            textBoxLabelPairs= new Dictionary<TextBox, Label>();
+            EditorTableLayout.RowStyles.RemoveAt(0);
+            //cleanEditor();
             upWindowName = windowNames[0];
             downWindowName = windowNames[1];
             foreach(var s in windowNames)
@@ -44,10 +45,38 @@ namespace Translate2
             downComboBox.SelectedIndex = 1;
             upComboBox.SelectedIndexChanged += onUpComboBoxChange;
             downComboBox.SelectedIndexChanged += onDownComboBoxChange;
+            //InitBug();
             /*InitializeContextMenuStrip();
 
             // 关联ComboBox的SelectedIndexChanged事件到事件处理程序  
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);*/
+        }
+        private async void InitBug()
+        {
+            RowStyle style = new RowStyle(SizeType.AutoSize);
+            EditorTableLayout.RowStyles.Add(style);
+            EditorTableLayout.RowCount++;
+
+            TextBox newBox = new TextBox();
+            newBox.Dock = DockStyle.Fill;
+            newBox.Multiline = true;
+            newBox.WordWrap = true;
+            newBox.TextChanged += SettxtHeight;
+            newBox.Click += TransferText2MachineView;
+            newBox.BackColor = System.Drawing.SystemColors.Menu;
+            newBox.BorderStyle = BorderStyle.None;
+
+            Label label = new Label();
+            label.Text = "t";
+            label.Dock = DockStyle.Fill;
+            label.AutoSize = true;
+
+            textBoxLabelPairs.Add(newBox, label);
+
+            EditorTableLayout.Controls.Add(newBox, 0, testCnt);
+            EditorTableLayout.Controls.Add(label, 0, testCnt++);
+            await Task.Delay(50);
+            cleanEditor();
         }
 
         private void onCreateNewProject(object sender, EventArgs e)
@@ -208,9 +237,17 @@ namespace Translate2
         private void SettxtHeight(object sender, EventArgs e)
         {
             TextBox txt1 = (TextBox)sender;
-            int txtHeight = 9;//设置单行的行高
+            int txtHeight = 16;//设置单行的行高
             Size size = TextRenderer.MeasureText(txt1.Text, txt1.Font);
             int itxtLine = size.Width / txt1.Width + txt1.Lines.Count() + 1;
+            txt1.Height = txtHeight * itxtLine;
+        }
+        private void SetLabelHeight(object sender, EventArgs e)
+        {
+            Label txt1 = (Label)sender;
+            int txtHeight = 9;//设置单行的行高
+            Size size = TextRenderer.MeasureText(txt1.Text, txt1.Font);
+            int itxtLine = size.Width / txt1.Width  + 1;
             txt1.Height = txtHeight * itxtLine;
         }
         private void TransferText2MachineView(object sender, EventArgs e)
@@ -247,7 +284,7 @@ namespace Translate2
         }
 
 
-        private void onClickImportDoc(object sender, EventArgs e)
+        private async void onClickImportDoc(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "选择文件";
@@ -262,12 +299,20 @@ namespace Translate2
             }
             if (d != null)
             {
+                List<TextBox> newboxes=new List<TextBox>();
                 cleanEditor();
                 for (int i = 0; i < d.ParaCount; i++)
                 {
-                    RowStyle style = new RowStyle(SizeType.AutoSize);
-                    EditorTableLayout.RowStyles.Add(style);
-                    EditorTableLayout.RowCount++;
+                    if (i > 0)
+                    {
+                        RowStyle style = new RowStyle(SizeType.AutoSize);
+                        EditorTableLayout.RowStyles.Add(style);
+                        EditorTableLayout.RowCount++;
+                    }
+                    else
+                    {
+                        EditorTableLayout.RowStyles[0] = new RowStyle(SizeType.AutoSize);
+                    }
 
                     TextBox newBox = new TextBox();
                     newBox.Dock = DockStyle.Fill;
@@ -277,6 +322,7 @@ namespace Translate2
                     newBox.Click += TransferText2MachineView;
                     newBox.BackColor = System.Drawing.SystemColors.Menu;
                     newBox.BorderStyle = BorderStyle.None;
+                    newboxes.Add(newBox);
 
                     Label label = new Label();
                     label.Text = d.GetParaByIndex(i);
@@ -288,6 +334,11 @@ namespace Translate2
                     EditorTableLayout.Controls.Add(newBox, 0, testCnt);
                     EditorTableLayout.Controls.Add(label, 0, testCnt++);
                 }
+                await Task.Delay(50);
+                for (int i = 0; i < d.ParaCount; i++)
+                {
+                    newboxes[i].Height = 16;
+                }
             }
         }
         private void cleanEditor()
@@ -295,6 +346,23 @@ namespace Translate2
             testCnt = 0;
             textBoxLabelPairs.Clear();
             EditorTableLayout.Controls.Clear();
+        }
+
+        private void EditorTableLayout_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void 测试ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Label l=null;
+            foreach(var label in textBoxLabelPairs.Values)
+            {
+                l = label;
+                break;
+            }
+            l.Height = 16;
+            l.Text = "test";
         }
 
         private async void  onClickOpenProject(object sender, EventArgs e)

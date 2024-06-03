@@ -79,3 +79,4 @@ D:\Code\Translate2\Translate2\obj\Debug\Translate2.SubViews.FuzzyView.resources
 D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.SubViews.FuzzyView.resources
 D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.SubViews.DictionaryView.resources
 D:\machine_translate_assistant\Translate\Translate2\obj\Debug\Translate2.SubViews.MemoryView.resources
+D:\Code\Translate2\Translate2\obj\Debug\Translate2.SubViews.MemoryView.resources
