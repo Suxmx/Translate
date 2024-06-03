@@ -32,5 +32,15 @@ namespace Translate2.Data
             }
             m_Dict[name] = value;   
         }
+        public bool TryGetAttribute<T>(string name, out T value)
+        {
+            value = default(T);
+            bool ret = m_Dict.TryGetValue(name, out var obj);
+            if (!ret) return false;
+            if (!(obj is T)) return false;
+            value= (T)obj;
+            return true;
+           
+        }
     }
 }
