@@ -21,7 +21,7 @@ namespace Translate2.AssistantDictionary
             // MessageBox.Show("Current Directory: " + currentDirectory);
 
             fuzzyMatcher = new FuzzyMatchingTool();
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary = new Dictionary<string, string>();
             // compareFile();
             // MessageBox.Show("complete");
             LoadDictionary(ref dictionary, "../../normalDictionary/dictionary.txt");
@@ -123,7 +123,7 @@ namespace Translate2.AssistantDictionary
                         }
                     }
                 // }
-                // MessageBox.Show("读取完成");
+                 MessageBox.Show("读取完成");
             }
             catch (Exception ex)
             {
