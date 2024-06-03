@@ -38,7 +38,7 @@ namespace Translate2.MemBase
 
         private void LoadDictionary(ref Dictionary<string, string> dictionary, string filePath)
         {
-            string outputFile = "../../normalDictionary/output_file.txt";
+            // string outputFile = "../../normalDictionary/output_file.txt";
             string lastRead = null;
             try
             {
