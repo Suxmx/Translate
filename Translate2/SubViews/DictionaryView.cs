@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translate2.AssistantDictionary;
 
 namespace Translate2.SubViews
 {
@@ -22,7 +23,7 @@ namespace Translate2.SubViews
         private void button1_Click(object sender, EventArgs e)
         {
             string queryString = textBox1.Text;
-            textBox2.Text = termDictionary.useTheDictionary(queryString);
+            textBox2.Text = termDictionary.UseTheDictionary(queryString);
         }
     }
 }

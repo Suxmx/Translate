@@ -90,6 +90,7 @@
     <Compile Include="Data\ProjectSaveData.cs" />
     <Compile Include="Data\TranslateUnitPair.cs" />
     <Compile Include="ExtendFunction\AssistantDictionary.cs" />
+    <Compile Include="ExtendFunction\MemoryBase.cs" />
     <Compile Include="ExtendFunction\FuzzyMatching.cs" />
     <Compile Include="ExtendFunction\MachineTranslate.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -118,6 +119,12 @@
     <Compile Include="SubViews\DictionaryView.Designer.cs">
       <DependentUpon>DictionaryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubViews\MemoryView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\MemoryView.Designer.cs">
+      <DependentUpon>MemoryView.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestControll.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubViews\DictionaryView.resx">
       <DependentUpon>DictionaryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubViews\MemoryView.resx">
+      <DependentUpon>MemoryView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestControll.resx">
       <DependentUpon>TestControll.cs</DependentUpon>
