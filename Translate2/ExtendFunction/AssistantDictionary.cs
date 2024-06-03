@@ -13,7 +13,7 @@ namespace Translate2.AssistantDictionary
     public class MyDictionary
     {
         private FuzzyMatchingTool fuzzyMatcher;
-        private Dictionary<string, string> dictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private Dictionary<string, string> dictionary = new Dictionary<string, string>();
         private string keyOfDictionary = string.Empty;
         public MyDictionary()
         {
@@ -21,9 +21,116 @@ namespace Translate2.AssistantDictionary
             // MessageBox.Show("Current Directory: " + currentDirectory);
 
             fuzzyMatcher = new FuzzyMatchingTool();
-            LoadDictionary("../../termDictionary/dictionary.txt");
+            // compareFile();
+            // MessageBox.Show("complete");
+            LoadDictionary(ref dictionary, "../../normalDictionary/dictionary.txt");
         }
-        private void LoadDictionary(string filePath)
+
+        private static int FindFirstDifference(string line1, string line2)
+        {
+            int minLength = Math.Min(line1.Length, line2.Length);
+
+            for (int i = 0; i < minLength; i++)
+            {
+                if (line1[i] != line2[i])
+                {
+                    return i + 1; // 返回列号，从1开始计数
+                }
+            }
+
+            return minLength + 1; // 如果一个是另一个的前缀，返回长度+1的位置
+        }
+
+        private void compareFile()
+        {
+            string filePath1 = "../../normalDictionary/dictionary.txt",
+                filePath2 = "../../normalDictionary/output_file.txt";
+            try
+            {
+                using (StreamReader reader1 = new StreamReader(filePath1))
+                using (StreamReader reader2 = new StreamReader(filePath2))
+                {
+                    string line1 = "", line2 = "";
+                    int lineNumber = 0;
+
+                    while ((line1 = reader1.ReadLine()) != null && (line2 = reader2.ReadLine()) != null)
+                    {
+                        lineNumber++;
+                        if (!line1.Equals(line2))
+                        {
+                            int column = FindFirstDifference(line1, line2);
+                            MessageBox.Show($"Files differ at line {lineNumber}, column {column}");
+                            return;
+                        }
+                    }
+
+                    if (line1 != null || reader1.ReadLine() != null || line2 != null || reader2.ReadLine() != null)
+                    {
+                        Console.WriteLine($"Files differ at line {lineNumber + 1}, one file has extra lines.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Files are identical.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void LoadDictionary(ref Dictionary<string, string> dictionary, string filePath)
+        {
+            string outputFile = "../../normalDictionary/output_file.txt";
+            string lastRead = null;
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(outputFile))
+                {
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            if (string.IsNullOrEmpty(line)) continue;
+                            if (lastRead == null)
+                            {
+                                lastRead = line;
+                            }
+                            else
+                            {
+                                if (dictionary.ContainsKey(lastRead))
+                                {
+                                    dictionary[lastRead] += Environment.NewLine + line + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    dictionary[lastRead] = line + Environment.NewLine;
+                                }
+
+                                writer.WriteLine($"{lastRead}\r\n{line}\r\n");
+                                lastRead = null;
+                            }
+                        }
+
+                        // 处理文件以单词结尾而没有对应释义的情况
+                        if (lastRead != null)
+                        {
+                            dictionary[lastRead] = string.Empty;
+                            writer.WriteLine($"{lastRead}\r\n{dictionary[lastRead]}");
+                        }
+                    }
+                }
+                // MessageBox.Show("读取完成");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"加载词典失败: {ex.Message}", "错误");
+            }
+        }
+
+        private void LoadDictionaryFalse(ref Dictionary <string, string> dictionary, string filePath)
         {
             try
             {
@@ -59,6 +166,7 @@ namespace Translate2.AssistantDictionary
         public string UseTheDictionary(string target)
         {
             int costTime = 0;
+            target = target.Trim();
             string resultString = SearchDictionary(target, ref costTime);
             if (resultString == target)
             {
@@ -68,11 +176,11 @@ namespace Translate2.AssistantDictionary
             {
                 if (resultString != null)
                 {
-                    resultString = "你是否想找\r\n" + resultString + "\r\n" + dictionary[resultString] + $"\r\n模糊匹配用时：{costTime}ms";
+                    resultString = "你是否想找\r\n" + resultString + "\r\n" + dictionary[resultString] + $"\r\n模糊匹配用时：{costTime}ms\r\n";
                     return resultString;
                 }
                 else
-                    return $"对不起，找不到该单词\r\n 匹配用时：{costTime}ms";
+                    return $"对不起，找不到该单词\r\n 匹配用时：{costTime}ms\r\n";
             }
             return null;
         }

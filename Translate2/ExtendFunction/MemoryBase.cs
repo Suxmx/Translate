@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Translate2.ExtendFunction;
 
-namespace Translate2.MemoryBase
+namespace Translate2.MemBase
 {
+    public class MemoryBase
+    {
+        private Dictionary<string, string> memoryDictionary = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
+    }
 }
