@@ -437,6 +437,50 @@ namespace Translate2
             }
         }
 
+        private void onClickExportMarkdown(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "导出文件";
+            saveFileDialog.InitialDirectory = @"C:\";
+            saveFileDialog.Filter = "md 文件 (*.md)|*.md";
+            DialogResult result = saveFileDialog.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+            string path = saveFileDialog.FileName;
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    if (string.IsNullOrEmpty(pair.Key.Text))
+                    {
+                        writer.WriteLine($"*{pair.Value.Text}*  ");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"__{pair.Key.Text}__  ");
+                    }
+                }
+            }
+
+            string newFileName = "dictionary.txt"; // 新文件名
+            string destinationDirectory = "../../memoryDictionary/";
+            string destinationPath = Path.Combine(destinationDirectory, newFileName);
+
+            using (StreamWriter writer = new StreamWriter(destinationPath))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    if (pair.Key.Text.Trim().Length > 0)
+                    {
+                        writer.WriteLine(pair.Value.Text);
+                        writer.WriteLine(pair.Key.Text);
+                    }
+                }
+            }
+    }
+
         private async void  onClickOpenProject(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -501,7 +545,7 @@ namespace Translate2
 
 
 
-        private void onClickExport(object sender, EventArgs e)
+        private void onClickExportTxt(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "导出文件";

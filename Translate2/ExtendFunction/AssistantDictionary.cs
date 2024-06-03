@@ -127,7 +127,7 @@ namespace Translate2.AssistantDictionary
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"加载词典失败: {ex.Message}", "错误");
+                // MessageBox.Show($"加载词典失败: {ex.Message}", "错误");
             }
         }
 
@@ -159,7 +159,7 @@ namespace Translate2.AssistantDictionary
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"failed loading dictionary: {ex.Message}", "Error");
+                // MessageBox.Show($"failed loading dictionary: {ex.Message}", "Error");
             }
             // MessageBox.Show($"the size is : {dictionary.Count}");
         }

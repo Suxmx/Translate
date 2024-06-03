@@ -48,6 +48,7 @@
             this.docToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入术语库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -234,21 +235,21 @@
             // 新建项目ToolStripMenuItem
             // 
             this.新建项目ToolStripMenuItem.Name = "新建项目ToolStripMenuItem";
-            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.新建项目ToolStripMenuItem.Text = "新建项目";
             this.新建项目ToolStripMenuItem.Click += new System.EventHandler(this.onCreateNewProject);
             // 
             // 打开项目ToolStripMenuItem
             // 
             this.打开项目ToolStripMenuItem.Name = "打开项目ToolStripMenuItem";
-            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.打开项目ToolStripMenuItem.Text = "打开项目";
             this.打开项目ToolStripMenuItem.Click += new System.EventHandler(this.onClickOpenProject);
             // 
             // 保存项目ToolStripMenuItem
             // 
             this.保存项目ToolStripMenuItem.Name = "保存项目ToolStripMenuItem";
-            this.保存项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.保存项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.保存项目ToolStripMenuItem.Text = "保存项目";
             this.保存项目ToolStripMenuItem.Click += new System.EventHandler(this.OnClickSaveProj);
             // 
@@ -257,7 +258,7 @@
             this.导入文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.docToolStripMenuItem});
             this.导入文件ToolStripMenuItem.Name = "导入文件ToolStripMenuItem";
-            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.导入文件ToolStripMenuItem.Text = "导入文件";
             // 
             // docToolStripMenuItem
@@ -270,22 +271,30 @@
             // 导出文件ToolStripMenuItem
             // 
             this.导出文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tXTToolStripMenuItem});
+            this.tXTToolStripMenuItem,
+            this.markdownToolStripMenuItem});
             this.导出文件ToolStripMenuItem.Name = "导出文件ToolStripMenuItem";
-            this.导出文件ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
+            this.导出文件ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.导出文件ToolStripMenuItem.Text = "导出文件";
             // 
             // tXTToolStripMenuItem
             // 
             this.tXTToolStripMenuItem.Name = "tXTToolStripMenuItem";
-            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(142, 34);
+            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.tXTToolStripMenuItem.Text = "TXT";
-            this.tXTToolStripMenuItem.Click += new System.EventHandler(this.onClickExport);
+            this.tXTToolStripMenuItem.Click += new System.EventHandler(this.onClickExportTxt);
+            // 
+            // markdownToolStripMenuItem
+            // 
+            this.markdownToolStripMenuItem.Name = "markdownToolStripMenuItem";
+            this.markdownToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.markdownToolStripMenuItem.Text = "Markdown";
+            this.markdownToolStripMenuItem.Click += new System.EventHandler(this.onClickExportMarkdown);
             // 
             // 测试ToolStripMenuItem1
             // 
             this.测试ToolStripMenuItem1.Name = "测试ToolStripMenuItem1";
-            this.测试ToolStripMenuItem1.Size = new System.Drawing.Size(182, 34);
+            this.测试ToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.测试ToolStripMenuItem1.Text = "测试";
             this.测试ToolStripMenuItem1.Click += new System.EventHandler(this.测试ToolStripMenuItem1_Click);
             // 
@@ -360,6 +369,7 @@
         private System.Windows.Forms.ToolStripMenuItem tXTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 导入术语库ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem markdownToolStripMenuItem;
     }
 }
 
