@@ -31,6 +31,7 @@ namespace Translate2
         private bool upUpdateManully, downUpdateManully;
         public  MainForm()
         {
+    
             InitializeComponent();
             textBoxLabelPairs = new Dictionary<TextBox, Label>();
             EditorTableLayout.RowCount = 0;
@@ -65,6 +66,7 @@ namespace Translate2
             newBox.WordWrap = true;
             newBox.TextChanged += SettxtHeight;
             newBox.Click += TransferText2MachineView;
+            newBox.Click += TransferText2MemoryView;
             newBox.BackColor = System.Drawing.SystemColors.Menu;
             newBox.BorderStyle = BorderStyle.None;
 
@@ -153,10 +155,11 @@ namespace Translate2
                     newControl = new DictionaryView();
                     break;
                 case 2:
-                    newControl =new FuzzyView();    
+                    newControl =new TermDictionaryView();    
                     break;
                 case 3:
                     newControl = new MemoryView();
+                    memoryView= newControl as MemoryView;
                     break;
                 case 4:
                     break;
@@ -199,10 +202,11 @@ namespace Translate2
                     newControl = new DictionaryView();
                     break;
                 case 2:
-                    newControl = new FuzzyView();
+                    newControl = new TermDictionaryView();
                     break;
                 case 3:
                     newControl = new MemoryView();
+                    memoryView = newControl as MemoryView;
                     break;
                 case 4:
                     break;
@@ -269,8 +273,10 @@ namespace Translate2
         {
             if (memoryView is null) return;
             memoryView.now_trans = textBoxLabelPairs[(TextBox)(sender)].Text;
+            // MessageBox.Show(memoryView.now_trans);
+            // memoryView.textBox1.Text = memoryView.showContent(memoryView.now_trans);
             memoryView.textBox1.Text = memoryView.showContent(memoryView.now_trans);
-            MachineTranslateView.TextBox = (TextBox)(sender);
+            memoryView.TextBox = (TextBox)(sender);
         }
 
         private void OnClickSaveProj(object sender, EventArgs e)
@@ -351,6 +357,7 @@ namespace Translate2
                     newBox.WordWrap = true;
                     newBox.TextChanged += SettxtHeight;
                     newBox.Click += TransferText2MachineView;
+                    newBox.Click += TransferText2MemoryView;
                     newBox.BackColor = System.Drawing.SystemColors.Menu;
                     newBox.BorderStyle = BorderStyle.None;
                     newboxes.Add(newBox);
@@ -464,6 +471,7 @@ namespace Translate2
                 newBox.Multiline = true;
                 newBox.WordWrap = true;
                 newBox.Click += TransferText2MachineView;
+                newBox.Click += TransferText2MemoryView;
                 newBox.BackColor = System.Drawing.SystemColors.Menu;
                 newBox.BorderStyle = BorderStyle.None;
                 newBox.TextChanged += SettxtHeight;

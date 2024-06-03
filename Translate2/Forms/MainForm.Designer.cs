@@ -110,7 +110,7 @@
             this.EditorTableLayout.ColumnCount = 1;
             this.EditorTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.EditorTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditorTableLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.EditorTableLayout.Font = new System.Drawing.Font("HarmonyOS Sans SC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditorTableLayout.Location = new System.Drawing.Point(5, 41);
             this.EditorTableLayout.Name = "EditorTableLayout";
             this.EditorTableLayout.RowCount = 1;

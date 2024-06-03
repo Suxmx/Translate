@@ -137,7 +137,7 @@ namespace Translate2.ExtendFunction
 
             foreach (var kvp in dictionary)
             {
-                int similarity = Fuzz.Ratio(kvp.Key.ToLower(), target.ToLower());
+                int similarity = Fuzz.Ratio(kvp.Key, target);
                 if (similarity > highestSimilarity)
                 {
                     highestSimilarity = similarity;
