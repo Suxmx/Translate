@@ -36,6 +36,12 @@ namespace Translate2.MemBase
             return resultString;
         }
 
+        public KeyValuePair<KeyValuePair<string, string>, int> getMostSimilarEntry(string target)
+        {
+            var result = fuzzyMatcher.getMostSimilar(memoryDictionary, target);
+            return result;
+        }
+
         private void LoadDictionary(ref Dictionary<string, string> dictionary, string filePath)
         {
             // string outputFile = "../../normalDictionary/output_file.txt";

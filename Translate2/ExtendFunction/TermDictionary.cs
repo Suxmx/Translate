@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Translate2.ExtendFunction;
 
-namespace Translate2.AssistantDictionary
+namespace Translate2.TermDictionary
 {
     public class MyDictionary
     {
@@ -89,41 +89,41 @@ namespace Translate2.AssistantDictionary
             {
                 // using (StreamWriter writer = new StreamWriter(outputFile))
                 // {
-                    using (StreamReader reader = new StreamReader(filePath))
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
+                        if (string.IsNullOrEmpty(line)) continue;
+                        if (lastRead == null)
                         {
-                            if (string.IsNullOrEmpty(line)) continue;
-                            if (lastRead == null)
+                            lastRead = line;
+                        }
+                        else
+                        {
+                            if (dictionary.ContainsKey(lastRead))
                             {
-                                lastRead = line;
+                                dictionary[lastRead] += Environment.NewLine + line + Environment.NewLine;
                             }
                             else
                             {
-                                if (dictionary.ContainsKey(lastRead))
-                                {
-                                    dictionary[lastRead] += Environment.NewLine + line + Environment.NewLine;
-                                }
-                                else
-                                {
-                                    dictionary[lastRead] = line + Environment.NewLine;
-                                }
-
-                                // writer.WriteLine($"{lastRead}\r\n{line}\r\n");
-                                lastRead = null;
+                                dictionary[lastRead] = line + Environment.NewLine;
                             }
-                        }
 
-                        // 处理文件以单词结尾而没有对应释义的情况
-                        if (lastRead != null)
-                        {
-                            dictionary[lastRead] = string.Empty;
-                            // writer.WriteLine($"{lastRead}\r\n{dictionary[lastRead]}");
+                            // writer.WriteLine($"{lastRead}\r\n{line}\r\n");
+                            lastRead = null;
                         }
                     }
+
+                    // 处理文件以单词结尾而没有对应释义的情况
+                    if (lastRead != null)
+                    {
+                        dictionary[lastRead] = string.Empty;
+                        // writer.WriteLine($"{lastRead}\r\n{dictionary[lastRead]}");
+                    }
+                }
                 // }
-                 // MessageBox.Show("读取完成");
+                // MessageBox.Show("读取完成");
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace Translate2.AssistantDictionary
             }
         }
 
-        private void LoadDictionaryFalse(ref Dictionary <string, string> dictionary, string filePath)
+        private void LoadDictionaryFalse(ref Dictionary<string, string> dictionary, string filePath)
         {
             try
             {

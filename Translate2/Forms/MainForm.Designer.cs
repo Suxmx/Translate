@@ -35,8 +35,10 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.RightUpTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.upComboBox = new System.Windows.Forms.ComboBox();
+            this.MachineTranslateView = new Translate2.SubViews.MachineTranslate();
             this.RightDownTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.downComboBox = new System.Windows.Forms.ComboBox();
+            this.dictionaryView = new Translate2.SubViews.DictionaryView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建项目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,11 +48,10 @@
             this.docToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.MachineTranslateView = new Translate2.SubViews.MachineTranslate();
-            this.dictionaryView = new Translate2.SubViews.DictionaryView();
+            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导入术语库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -114,7 +115,7 @@
             this.EditorTableLayout.Name = "EditorTableLayout";
             this.EditorTableLayout.RowCount = 1;
             this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 791F));
+            this.EditorTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 795F));
             this.EditorTableLayout.Size = new System.Drawing.Size(708, 795);
             this.EditorTableLayout.TabIndex = 3;
             this.EditorTableLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.EditorTableLayout_Paint);
@@ -159,6 +160,15 @@
             this.upComboBox.Size = new System.Drawing.Size(254, 26);
             this.upComboBox.TabIndex = 1;
             // 
+            // MachineTranslateView
+            // 
+            this.MachineTranslateView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MachineTranslateView.Location = new System.Drawing.Point(4, 40);
+            this.MachineTranslateView.Margin = new System.Windows.Forms.Padding(2);
+            this.MachineTranslateView.Name = "MachineTranslateView";
+            this.MachineTranslateView.Size = new System.Drawing.Size(704, 370);
+            this.MachineTranslateView.TabIndex = 2;
+            // 
             // RightDownTableLayout
             // 
             this.RightDownTableLayout.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
@@ -184,6 +194,16 @@
             this.downComboBox.Size = new System.Drawing.Size(254, 26);
             this.downComboBox.TabIndex = 1;
             // 
+            // dictionaryView
+            // 
+            this.dictionaryView.AutoSize = true;
+            this.dictionaryView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dictionaryView.Location = new System.Drawing.Point(8, 44);
+            this.dictionaryView.Margin = new System.Windows.Forms.Padding(6);
+            this.dictionaryView.Name = "dictionaryView";
+            this.dictionaryView.Size = new System.Drawing.Size(696, 363);
+            this.dictionaryView.TabIndex = 2;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
@@ -194,7 +214,6 @@
             this.测试ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1448, 32);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -215,21 +234,21 @@
             // 新建项目ToolStripMenuItem
             // 
             this.新建项目ToolStripMenuItem.Name = "新建项目ToolStripMenuItem";
-            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.新建项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.新建项目ToolStripMenuItem.Text = "新建项目";
             this.新建项目ToolStripMenuItem.Click += new System.EventHandler(this.onCreateNewProject);
             // 
             // 打开项目ToolStripMenuItem
             // 
             this.打开项目ToolStripMenuItem.Name = "打开项目ToolStripMenuItem";
-            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.打开项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.打开项目ToolStripMenuItem.Text = "打开项目";
             this.打开项目ToolStripMenuItem.Click += new System.EventHandler(this.onClickOpenProject);
             // 
             // 保存项目ToolStripMenuItem
             // 
             this.保存项目ToolStripMenuItem.Name = "保存项目ToolStripMenuItem";
-            this.保存项目ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.保存项目ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.保存项目ToolStripMenuItem.Text = "保存项目";
             this.保存项目ToolStripMenuItem.Click += new System.EventHandler(this.OnClickSaveProj);
             // 
@@ -238,7 +257,7 @@
             this.导入文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.docToolStripMenuItem});
             this.导入文件ToolStripMenuItem.Name = "导入文件ToolStripMenuItem";
-            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.导入文件ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.导入文件ToolStripMenuItem.Text = "导入文件";
             // 
             // docToolStripMenuItem
@@ -253,7 +272,7 @@
             this.导出文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tXTToolStripMenuItem});
             this.导出文件ToolStripMenuItem.Name = "导出文件ToolStripMenuItem";
-            this.导出文件ToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.导出文件ToolStripMenuItem.Size = new System.Drawing.Size(182, 34);
             this.导出文件ToolStripMenuItem.Text = "导出文件";
             // 
             // tXTToolStripMenuItem
@@ -263,11 +282,27 @@
             this.tXTToolStripMenuItem.Text = "TXT";
             this.tXTToolStripMenuItem.Click += new System.EventHandler(this.onClickExport);
             // 
+            // 测试ToolStripMenuItem1
+            // 
+            this.测试ToolStripMenuItem1.Name = "测试ToolStripMenuItem1";
+            this.测试ToolStripMenuItem1.Size = new System.Drawing.Size(182, 34);
+            this.测试ToolStripMenuItem1.Text = "测试";
+            this.测试ToolStripMenuItem1.Click += new System.EventHandler(this.测试ToolStripMenuItem1_Click);
+            // 
             // 设置ToolStripMenuItem
             // 
+            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.导入术语库ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.设置ToolStripMenuItem.Text = "设置";
+            // 
+            // 导入术语库ToolStripMenuItem
+            // 
+            this.导入术语库ToolStripMenuItem.Name = "导入术语库ToolStripMenuItem";
+            this.导入术语库ToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
+            this.导入术语库ToolStripMenuItem.Text = "导入术语库";
+            this.导入术语库ToolStripMenuItem.Click += new System.EventHandler(this.导入术语库ToolStripMenuItem_Click);
             // 
             // 测试ToolStripMenuItem
             // 
@@ -275,32 +310,6 @@
             this.测试ToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.测试ToolStripMenuItem.Text = "测试";
             this.测试ToolStripMenuItem.Click += new System.EventHandler(this.onClickTestButton);
-            // 
-            // 测试ToolStripMenuItem1
-            // 
-            this.测试ToolStripMenuItem1.Name = "测试ToolStripMenuItem1";
-            this.测试ToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
-            this.测试ToolStripMenuItem1.Text = "测试";
-            this.测试ToolStripMenuItem1.Click += new System.EventHandler(this.测试ToolStripMenuItem1_Click);
-            // 
-            // MachineTranslateView
-            // 
-            this.MachineTranslateView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MachineTranslateView.Location = new System.Drawing.Point(4, 40);
-            this.MachineTranslateView.Margin = new System.Windows.Forms.Padding(2);
-            this.MachineTranslateView.Name = "MachineTranslateView";
-            this.MachineTranslateView.Size = new System.Drawing.Size(704, 370);
-            this.MachineTranslateView.TabIndex = 2;
-            // 
-            // dictionaryView
-            // 
-            this.dictionaryView.AutoSize = true;
-            this.dictionaryView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dictionaryView.Location = new System.Drawing.Point(8, 44);
-            this.dictionaryView.Margin = new System.Windows.Forms.Padding(6);
-            this.dictionaryView.Name = "dictionaryView";
-            this.dictionaryView.Size = new System.Drawing.Size(696, 363);
-            this.dictionaryView.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -350,6 +359,7 @@
         private System.Windows.Forms.ToolStripMenuItem 导出文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tXTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 导入术语库ToolStripMenuItem;
     }
 }
 

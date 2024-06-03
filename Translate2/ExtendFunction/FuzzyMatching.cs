@@ -125,9 +125,27 @@ namespace Translate2.ExtendFunction
             var topResults = similarityList.OrderByDescending(x => x.Value).Take(10).ToList();
             foreach (var result in topResults)
             {
-                resultString += result.Key + $"({result.Value}) " + dictionary[result.Key] + "\r\n";
+                resultString += $"({result.Value}) " + result.Key + dictionary[result.Key] + "\r\n";
             }
             return resultString;
+        }
+
+        internal KeyValuePair<KeyValuePair<string, string>, int> getMostSimilar(Dictionary<string, string> dictionary, string target)
+        {
+            KeyValuePair<string, string> mostSimilarPair = default;
+            int highestSimilarity = 0;
+
+            foreach (var kvp in dictionary)
+            {
+                int similarity = Fuzz.Ratio(kvp.Key.ToLower(), target.ToLower());
+                if (similarity > highestSimilarity)
+                {
+                    highestSimilarity = similarity;
+                    mostSimilarPair = kvp;
+                }
+            }
+
+            return new KeyValuePair<KeyValuePair<string, string>, int>(mostSimilarPair, highestSimilarity);
         }
     }
 }

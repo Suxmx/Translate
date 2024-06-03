@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Translate2.Data;
 using Translate2.Data.DOCX;
+using Translate2.MemBase;
 using Translate2.SubViews;
 
 namespace Translate2
@@ -18,6 +19,7 @@ namespace Translate2
     public partial class MainForm : Form
     {
         private MachineTranslate machineTranslate => (MachineTranslate)RightUpTableLayout.Controls[1];
+        private MemoryView memoryView;
         private int testCnt = 0;
         private Dictionary<TextBox, Label> textBoxLabelPairs;
 
@@ -154,7 +156,9 @@ namespace Translate2
                     newControl =new FuzzyView();    
                     break;
                 case 3:
-                    //newControl
+                    newControl = new MemoryView();
+                    break;
+                case 4:
                     break;
             }
             newControl.Dock = DockStyle.Fill;
@@ -198,7 +202,9 @@ namespace Translate2
                     newControl = new FuzzyView();
                     break;
                 case 3:
-                    //newControl
+                    newControl = new MemoryView();
+                    break;
+                case 4:
                     break;
             }
             newControl.Dock = DockStyle.Fill;
@@ -259,6 +265,14 @@ namespace Translate2
 
         }
 
+        private void TransferText2MemoryView(object sender, EventArgs e)
+        {
+            if (memoryView is null) return;
+            memoryView.now_trans = textBoxLabelPairs[(TextBox)(sender)].Text;
+            memoryView.textBox1.Text = memoryView.showContent(memoryView.now_trans);
+            MachineTranslateView.TextBox = (TextBox)(sender);
+        }
+
         private void OnClickSaveProj(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -273,9 +287,26 @@ namespace Translate2
             }
             string path = saveFileDialog.FileName;
             ProjectSaveData data = new ProjectSaveData(path);
+            
+            string newFileName = "dictionary.txt"; // 新文件名
+            string destinationDirectory = "../../memoryDictionary/";
+            string destinationPath = Path.Combine(destinationDirectory, newFileName);
+
+            using (StreamWriter writer = new StreamWriter(destinationPath))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    if(pair.Key.Text.Trim().Length > 0)
+                    {
+                        writer.WriteLine(pair.Value.Text);
+                        writer.WriteLine(pair.Key.Text);
+                    }
+                }
+            }
 
             foreach (var pair in textBoxLabelPairs)
             {
+                // !!!!!!!!!!!
                 data.OriginTexts.Add(pair.Value.Text);
                 data.TranslateTexts.Add(pair.Key.Text);
             }
@@ -365,6 +396,40 @@ namespace Translate2
             l.Text = "test";
         }
 
+        private void 导入术语库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    // 将文件重命名并保存到指定目录
+                    string newFileName = "dictionary.txt"; // 新文件名
+                    string destinationDirectory = "../../termDictionary/";
+                    string destinationPath = Path.Combine(destinationDirectory, newFileName);
+
+                    try
+                    {
+                        if (!Directory.Exists(destinationDirectory))
+                        {
+                            Directory.CreateDirectory(destinationDirectory);
+                        }
+
+                        File.Copy(selectedFilePath, destinationPath, true);
+                        MessageBox.Show("已成功导入术语库", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         private async void  onClickOpenProject(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -450,6 +515,22 @@ namespace Translate2
                     }
                     else
                     {
+                        writer.WriteLine(pair.Key.Text);
+                    }
+                }
+            }
+
+            string newFileName = "dictionary.txt"; // 新文件名
+            string destinationDirectory = "../../memoryDictionary/";
+            string destinationPath = Path.Combine(destinationDirectory, newFileName);
+
+            using (StreamWriter writer = new StreamWriter(destinationPath))
+            {
+                foreach (var pair in textBoxLabelPairs)
+                {
+                    if (pair.Key.Text.Trim().Length > 0)
+                    {
+                        writer.WriteLine(pair.Value.Text);
                         writer.WriteLine(pair.Key.Text);
                     }
                 }
