@@ -84,5 +84,50 @@ namespace Translate2.ExtendFunction
             else
                 return resultString;
         }
+
+        internal static List<KeyValuePair<string, string>> FuzzyMatchingBackup(Dictionary<string, string> dictionary, string target, ref int costTime)
+        {
+            int startTime = Environment.TickCount;
+
+            List<KeyValuePair<string, int>> similarityList = new List<KeyValuePair<string, int>>();
+            foreach (var key in dictionary.Keys)
+            {
+                int ratio = Fuzz.Ratio(key.ToLower(), target.ToLower());
+                similarityList.Add(new KeyValuePair<string, int>(key, ratio));
+            }
+
+            var topResults = similarityList.OrderByDescending(x => x.Value).Take(10).ToList();
+
+            int endTime = Environment.TickCount;
+            costTime = endTime - startTime;
+
+            List<KeyValuePair<string, string>> resultList = new List<KeyValuePair<string, string>>();
+            foreach (var result in topResults)
+            {
+                if (result.Value >= threshold) // 仅添加相似度大于等于阈值的条目
+                {
+                    resultList.Add(new KeyValuePair<string, string>(result.Key, dictionary[result.Key]));
+                }
+            }
+
+            return resultList;
+        }
+
+        internal string multiFuzzyMatching(Dictionary<string, string> dictionary, string target)
+        {
+            string resultString = "";
+            List<KeyValuePair<string, int>> similarityList = new List<KeyValuePair<string, int>>();
+            foreach (var key in dictionary.Keys)
+            {
+                int ratio = Fuzz.Ratio(key.ToLower(), target.ToLower());
+                similarityList.Add(new KeyValuePair<string, int>(key, ratio));
+            }
+            var topResults = similarityList.OrderByDescending(x => x.Value).Take(10).ToList();
+            foreach (var result in topResults)
+            {
+                resultString += result.Key + $"({result.Value}) " + dictionary[result.Key] + "\r\n";
+            }
+            return resultString;
+        }
     }
 }

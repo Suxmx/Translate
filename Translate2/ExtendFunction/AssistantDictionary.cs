@@ -13,7 +13,7 @@ namespace Translate2.AssistantDictionary
     public class MyDictionary
     {
         private FuzzyMatchingTool fuzzyMatcher;
-        private Dictionary<string, string> dictionary = new Dictionary<string, string>();
+        private Dictionary<string, string> dictionary;
         private string keyOfDictionary = string.Empty;
         public MyDictionary()
         {
@@ -21,12 +21,13 @@ namespace Translate2.AssistantDictionary
             // MessageBox.Show("Current Directory: " + currentDirectory);
 
             fuzzyMatcher = new FuzzyMatchingTool();
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
             // compareFile();
             // MessageBox.Show("complete");
             LoadDictionary(ref dictionary, "../../normalDictionary/dictionary.txt");
         }
 
-        private static int FindFirstDifference(string line1, string line2)
+        private int FindFirstDifference(string line1, string line2)
         {
             int minLength = Math.Min(line1.Length, line2.Length);
 
@@ -86,8 +87,8 @@ namespace Translate2.AssistantDictionary
             string lastRead = null;
             try
             {
-                using (StreamWriter writer = new StreamWriter(outputFile))
-                {
+                // using (StreamWriter writer = new StreamWriter(outputFile))
+                // {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
                         string line;
@@ -109,7 +110,7 @@ namespace Translate2.AssistantDictionary
                                     dictionary[lastRead] = line + Environment.NewLine;
                                 }
 
-                                writer.WriteLine($"{lastRead}\r\n{line}\r\n");
+                                // writer.WriteLine($"{lastRead}\r\n{line}\r\n");
                                 lastRead = null;
                             }
                         }
@@ -118,10 +119,10 @@ namespace Translate2.AssistantDictionary
                         if (lastRead != null)
                         {
                             dictionary[lastRead] = string.Empty;
-                            writer.WriteLine($"{lastRead}\r\n{dictionary[lastRead]}");
+                            // writer.WriteLine($"{lastRead}\r\n{dictionary[lastRead]}");
                         }
                     }
-                }
+                // }
                 // MessageBox.Show("读取完成");
             }
             catch (Exception ex)
